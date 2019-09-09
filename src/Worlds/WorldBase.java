@@ -3,9 +3,11 @@ package Worlds;
 import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
+import Game.GameStates.State;
 import Main.Handler;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 
@@ -46,7 +48,8 @@ public abstract class WorldBase {
 
     }
     public void tick(){
-
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+            State.setState(handler.getGame().pauseState);}
 
 
     }
