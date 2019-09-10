@@ -102,7 +102,8 @@ public class Player {
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));
         }
-
+//        checks for tail collision and brings up game over
+        tailCollision(xCoord,yCoord);
     }
 
     public void render(Graphics g,Boolean[][] playeLocation){
@@ -230,6 +231,20 @@ public class Player {
         }
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
+    }
+
+
+    public void tailCollision(int xCoord,int yCoord){
+//        lenght = 0;
+        for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+            for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
+                handler.getWorld().body.forEach(tail -> {
+                            if (xCoord == tail.x && yCoord == tail.y) {
+                                System.out.println("death"); }
+                        }
+                        );
+            }
+        }
     }
 
 
