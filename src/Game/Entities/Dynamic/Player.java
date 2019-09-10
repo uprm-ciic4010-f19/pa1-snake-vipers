@@ -241,9 +241,7 @@ public class Player {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
                 handler.getWorld().body.forEach(tail -> {
                             if (xCoord == tail.x && yCoord == tail.y) {
-//                                System.out.println("death");
                                 State.setState(handler.getGame().gameoverSate);
-
                             }
                         }
                         );
