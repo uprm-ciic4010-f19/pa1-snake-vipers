@@ -18,6 +18,7 @@ public class Player {
 
     public int xCoord;
     public int yCoord;
+    public  double score;
 
     public int moveCounter;
 
@@ -122,7 +123,9 @@ public class Player {
 
             }
         }
-
+        g.setColor(Color.black);
+        g.setFont(new Font("AR ESSENCE", Font.BOLD, 40));
+        g.drawString(Double.toString(score),10,35);
 
     }
 
@@ -136,21 +139,27 @@ public class Player {
                 if( handler.getWorld().body.isEmpty()){
                     if(this.xCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
                         tail = new Tail(this.xCoord+1,this.yCoord,handler);
+                        justAte=true;
                     }else{
                         if(this.yCoord!=0){
                             tail = new Tail(this.xCoord,this.yCoord-1,handler);
+                            justAte=true;
                         }else{
                             tail =new Tail(this.xCoord,this.yCoord+1,handler);
+                            justAte=true;
                         }
                     }
                 }else{
                     if(handler.getWorld().body.getLast().x!=handler.getWorld().GridWidthHeightPixelCount-1){
                         tail=new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler);
+                        justAte=true;
                     }else{
                         if(handler.getWorld().body.getLast().y!=0){
                             tail=new Tail(handler.getWorld().body.getLast().x,this.yCoord-1,handler);
+                            justAte=true;
                         }else{
                             tail=new Tail(handler.getWorld().body.getLast().x,this.yCoord+1,handler);
+                            justAte=true;
 
                         }
                     }
@@ -161,21 +170,27 @@ public class Player {
                 if( handler.getWorld().body.isEmpty()){
                     if(this.xCoord!=0){
                         tail=new Tail(this.xCoord-1,this.yCoord,handler);
+                        justAte=true;
                     }else{
                         if(this.yCoord!=0){
                             tail=new Tail(this.xCoord,this.yCoord-1,handler);
+                            justAte=true;
                         }else{
                             tail=new Tail(this.xCoord,this.yCoord+1,handler);
+                            justAte=true;
                         }
                     }
                 }else{
                     if(handler.getWorld().body.getLast().x!=0){
                         tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
+                        justAte=true;
                     }else{
                         if(handler.getWorld().body.getLast().y!=0){
                             tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord-1,handler));
+                            justAte=true;
                         }else{
                             tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord+1,handler));
+                            justAte=true;
                         }
                     }
 
@@ -185,21 +200,27 @@ public class Player {
                 if( handler.getWorld().body.isEmpty()){
                     if(this.yCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
                         tail=(new Tail(this.xCoord,this.yCoord+1,handler));
+                        justAte=true;
                     }else{
                         if(this.xCoord!=0){
                             tail=(new Tail(this.xCoord-1,this.yCoord,handler));
+                            justAte=true;
                         }else{
                             tail=(new Tail(this.xCoord+1,this.yCoord,handler));
+                            justAte=true;
                         }
                     }
                 }else{
                     if(handler.getWorld().body.getLast().y!=handler.getWorld().GridWidthHeightPixelCount-1){
                         tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord+1,handler));
+                        justAte=true;
                     }else{
                         if(handler.getWorld().body.getLast().x!=0){
                             tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
+                            justAte=true;
                         }else{
                             tail=(new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler));
+                            justAte=true;
                         }
                     }
 
@@ -209,21 +230,27 @@ public class Player {
                 if( handler.getWorld().body.isEmpty()){
                     if(this.yCoord!=0){
                         tail=(new Tail(this.xCoord,this.yCoord-1,handler));
+                        justAte=true;
                     }else{
                         if(this.xCoord!=0){
                             tail=(new Tail(this.xCoord-1,this.yCoord,handler));
+                            justAte=true;
                         }else{
                             tail=(new Tail(this.xCoord+1,this.yCoord,handler));
+                            justAte=true;
                         } System.out.println("Tu biscochito");
                     }
                 }else{
                     if(handler.getWorld().body.getLast().y!=0){
                         tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord-1,handler));
+                        justAte=true;
                     }else{
                         if(handler.getWorld().body.getLast().x!=0){
                             tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
+                            justAte=true;
                         }else{
                             tail=(new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler));
+                            justAte=true;
                         }
                     }
 
@@ -232,11 +259,19 @@ public class Player {
         }
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
+        if (justAte){
+            if (score==0){
+                score=1;
+            }
+            else{
+                score= Math.sqrt((2*score)+1);
+            }
+            System.out.println(score);
+        }
     }
 
 
     public void tailCollision(int xCoord,int yCoord){
-//        lenght = 0;
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
                 handler.getWorld().body.forEach(tail -> {
