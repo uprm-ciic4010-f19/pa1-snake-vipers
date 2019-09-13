@@ -48,10 +48,31 @@ public class Player {
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)&&!(direction=="Right")){
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)&&!(direction=="Left")){
-            direction="Right";
-        }
-
+            direction="Right";}
+            
+  
+ // PHASE TWO
+            
+            if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
+        		Eat();
+        		}
+        		
+        
+        	if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+              		System.out.println("-");
+              		moveCounter--; 
+        		}
+       
+        	  if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS) ) {
+        		  System.out.println("+");
+        		  moveCounter++;
+        	  	}
+       
     }
+    
+    
+    
+    
 
     public void checkCollisionAndMove(){
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
